@@ -67,3 +67,36 @@ exports.deletebanner = async (req, res) => {
   });
   await res.send({ message: "delete successfully!" });
 };
+
+
+exports.bannerright = async (req, res) => {
+  await Banner.findAll(
+    {
+      where:{
+        bannername:"banner phai"
+      }
+    }
+  ).then((banneres) => {
+    res.json(banneres);
+  });
+};
+
+exports.bannerleft = (req, res) => {
+  pool_db.connect(function (err, client, done) {
+    if (err) {
+      return console.error("error", err);
+    }
+    client.query(
+      `SELECT * FROM banners limit 8`,
+      function (err, result) {
+        done();
+
+        if (err) {
+          res.end();
+          return console.error("error running query", err);
+        }
+        res.json(result.rows);
+      }
+    );
+  });
+};

@@ -1,0 +1,53 @@
+chức năng đăng ký,  đăng nhập :
+    - đăng ký , phương thức post 
+     http://localhost:2453/api/auth/signup
+    - đăng nhập , phương thức post
+      http://localhost:2453/api/auth/signin
+
+chức năng quản lý banner
+    - banner slide , phương thức get 
+        http://localhost:2453/api/banner/left
+    - banner tĩnh ,phương thức get 
+    http://localhost:2453/api/banner/right
+
+chức năng quản lý danh mục 
+    - danh sách danh mục, phương thức get 
+       http://localhost:2453/api/category/all
+    - chi tiết danh muc- truyển theo id , phương thức get
+        http://localhost:2453/api/category/categorybyid/:id
+
+chức năng quản lý thương hiệu
+        - danh sách thương hiệu, phương thức get 
+       http://localhost:2453/api/producer/all
+       - chi tiết thương hiệu- truyển theo id , phương thức get
+        http://localhost:2453/api/category/producerbyid/:id
+
+chức năng quản lý sản phẩm
+    -danh sách tất cả sản phẩm , phương thức get
+    http://localhost:2453/api/product/all
+
+    -danh sách các sản phẩm sale , get
+    http://localhost:2453/api/product/product_sale
+
+    -danh sách các điện thoại nổi bật , get
+    http://localhost:2453/api/product/product_phonehigh
+
+    - danh sách các laptop , máy tính bảng nỏi bật , get
+    http://localhost:2453/api/product/product_laptophigh
+
+    - danh sách điện thoại thời trang , get
+    http://localhost:2453/api/product/product_dhthoitrang
+
+    -danh sách điện thoại thông minh , get
+    http://localhost:2453/api/product/product_dhthongminh
+
+    - chi tiết sản phẩm truyển theo id, get 
+    http://localhost:2453/api/product/productbyid/:id
+
+chức năng liên hệ 
+    liên hệ của ng dùng - phương thức post
+    http://localhost:2453/api/contact/addcontact
+
+chức năng đánh giá 
+    đánh giá của ng dùng - phương thức post
+     http://localhost:2453/api/review/addreview  

@@ -88,3 +88,98 @@ exports.deleteproduct = async (req, res) => {
   });
   await res.send({ message: "delete successfully!" });
 };
+
+exports.product_saleoff = (req, res) => {
+  pool_db.connect(function (err, client, done) {
+      if (err) {
+          return console.error('error', err);
+      }
+      var id = req.params.id;
+      client.query(`SELECT products.*,categories."id" as cateid,categories."categoryname",producers."id" as prodid,producers."producername",producers."address" 
+                  FROM products inner join categories on products."categoryId" = categories."id" inner join producers on products."producerId" = producers."id" WHERE products."saleoff">5`, function (err, result) {
+          done();
+
+          if (err) {
+              res.end();
+              return console.error('error running query', err);
+          }
+          res.json(result.rows);    
+      });
+  });
+};
+
+exports.product_phonehigh = (req, res) => {
+  pool_db.connect(function (err, client, done) {
+      if (err) {
+          return console.error('error', err);
+      }
+      var id = req.params.id;
+      client.query(`SELECT products.*,categories."id" as cateid,categories."categoryname",producers."id" as prodid,producers."producername",producers."address" 
+                  FROM products inner join categories on products."categoryId" = categories."id" inner join producers on products."producerId" = producers."id" WHERE products."categoryId">10 and products."categoryId"<16 ORDER BY RANDOM() LIMIT 10`, function (err, result) {
+          done();
+
+          if (err) {
+              res.end();
+              return console.error('error running query', err);
+          }
+          res.json(result.rows);    
+      });
+  });
+};
+
+exports.product_laptophigh = (req, res) => {
+  pool_db.connect(function (err, client, done) {
+      if (err) {
+          return console.error('error', err);
+      }
+      var id = req.params.id;
+      client.query(`SELECT products.*,categories."id" as cateid,categories."categoryname",producers."id" as prodid,producers."producername",producers."address" 
+                  FROM products inner join categories on products."categoryId" = categories."id" inner join producers on products."producerId" = producers."id" WHERE products."categoryId">15 and products."categoryId"<26 ORDER BY RANDOM() LIMIT 15`, function (err, result) {
+          done();
+
+          if (err) {
+              res.end();
+              return console.error('error running query', err);
+          }
+          res.json(result.rows);    
+      });
+  });
+};
+
+exports.product_dhthongminh= (req, res) => {
+  pool_db.connect(function (err, client, done) {
+      if (err) {
+          return console.error('error', err);
+      }
+      var id = req.params.id;
+      client.query(`SELECT products.*,categories."id" as cateid,categories."categoryname",producers."id" as prodid,producers."producername",producers."address" 
+                  FROM products inner join categories on products."categoryId" = categories."id" inner join producers on products."producerId" = producers."id" WHERE products."categoryId"=7`, function (err, result) {
+          done();
+
+          if (err) {
+              res.end();
+              return console.error('error running query', err);
+          }
+          res.json(result.rows);    
+      });
+  });
+};
+
+exports.product_dhthoitrang= (req, res) => {
+  pool_db.connect(function (err, client, done) {
+      if (err) {
+          return console.error('error', err);
+      }
+      var id = req.params.id;
+      client.query(`SELECT products.*,categories."id" as cateid,categories."categoryname",producers."id" as prodid,producers."producername",producers."address" 
+                  FROM products inner join categories on products."categoryId" = categories."id" inner join producers on products."producerId" = producers."id" WHERE products."categoryId"=8`, function (err, result) {
+          done();
+
+          if (err) {
+              res.end();
+              return console.error('error running query', err);
+          }
+          res.json(result.rows);    
+      });
+  });
+};

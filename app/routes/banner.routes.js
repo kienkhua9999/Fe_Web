@@ -9,6 +9,8 @@ module.exports = function(app) {
     });
   //get
   app.get("/api/banner/all", controller.bannerall);
+  app.get("/api/banner/left", controller.bannerleft);
+  app.get("/api/banner/right", controller.bannerright);
   //byid
   app.get("/api/banner/bannerbyid/:id", controller.banerbyid);
   //add
