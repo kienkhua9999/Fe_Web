@@ -63,6 +63,7 @@ exports.addcategory = (req, res) => {
     });
 };
 
+
 exports.updatecategory = async (req, res) => {
   await Category.update({ categoryname: req.body.categoryname },
     {
@@ -86,4 +87,75 @@ exports.deletecategory = async (req, res) => {
     },
   });
   await res.send({ message: "delete successfully!" });
+};
+
+// view trang admin
+
+exports.listcategory = (req,res)=>{
+
+    Category.findAll({
+        where: {
+            categorylevel: 1
+        },
+        where: {
+            parentid: 0
+        },
+    }).then(category_parent => {
+        Category.findAll({
+            where: {
+                categorylevel: 2
+            },
+        }).then(categories => {
+            res.render('./categories.ejs', { ds_category_parent: category_parent, ds_category: categories });
+
+        });
+    });
+}
+
+exports.add_category = (req, res) => {
+  var categorylevel;
+  if (req.body.parentid == 0) {
+    categorylevel = 1;
+  } else {
+    categorylevel = 2;
+  }
+  Category.create({
+    categoryname: req.body.categoryname,
+    parentid: req.body.parentid,
+    categorylevel: categorylevel,
+  }).then(() => {
+            res.redirect("../category/list");
+          })
+        
+};
+
+
+exports.update_category = async (req, res) => {
+  console.log(req.body.categoryname);
+  await Category.update({ categoryname: req.body.categoryname },
+    {
+      where: {
+        id: req.params.id,
+      },
+    })
+    .then(() => {
+      res.redirect("../../category/list");
+    })
+    .catch((err) => {
+      res.status(500).send({ message: err.message });
+    });
+};
+
+
+exports.delete_category = async (req, res) => {
+  await Category.destroy({
+    where: {
+      id: req.params.id,
+    },
+  }).then(() => {
+    res.redirect("../../category/list");
+  })
+  .catch((err) => {
+    res.status(500).send({ message: err.message });
+  });
 };

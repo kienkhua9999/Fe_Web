@@ -1,14 +1,23 @@
 const express = require("express");
+var path = require('path');
 const bodyParser = require("body-parser");
 const cors = require("cors");
-
+const db = require("./app/models");
+const Sequelize = require("sequelize");
+const session = require('express-session');
 const app = express();
+
+app.use(cors(corsOptions));
 
 var corsOptions = {
   origin: "http://localhost:8081"
 };
 
-app.use(cors(corsOptions));
+app.set('views', path.join(__dirname, 'app/views'));
+app.set('view engine', 'ejs');
+app.use(express.static(path.join(__dirname, 'app/public')));
+
+
 
 // parse requests of content-type - application/json
 app.use(bodyParser.json());

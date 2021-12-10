@@ -9,13 +9,17 @@ module.exports = function(app) {
     });
   //select
   app.get("/api/producer/all", controller.producerall);
+  app.get("/producer/list", controller.producer_list);
   //byid
   app.get("/api/producer/producerbyid/:id", controller.producerbyid);
   //add
   app.post("/api/producer/addproducer", controller.addproducer);
+  app.post("/producer/add_producer", controller.add_producer);
   //update
   app.post("/api/producer/updateproducer/:id", controller.updateproducer);
+  app.post("/producer/update_producer/:id", controller.update_producer);
   //delete
-  app.delete("/api/producer/deleteproducer/:id",controller.deleteproducer)
+  app.delete("/api/producer/deleteproducer/:id",controller.deleteproducer);
+  app.get("/producer/delete_producer/:id",controller.delete_producer);
 
 };

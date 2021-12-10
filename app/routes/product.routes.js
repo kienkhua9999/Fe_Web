@@ -18,9 +18,15 @@ module.exports = function(app) {
     app.get("/api/product/productbyid/:id", controller.productbyid);
   //add
   app.post("/api/product/addproduct", controller.addproduct);
+  app.post("/product/add_product", controller.add_product);
   //update
   app.post("/api/product/updateproduct/:id", controller.updateproduct);
+  app.post("/product/update_product/:id", controller.update_product);
   //delete
-  app.delete("/api/product/deleteproduct/:id",controller.deleteproduct)
+  app.delete("/api/product/deleteproduct/:id",controller.deleteproduct);
+  app.get("/product/delete_product/:id",controller.delete_product);
 
+// view
+  app.get("/product/list", controller.product_list);
+  app.get("/api/product/deleteproduct/:id",controller.deleteproduct);
 };

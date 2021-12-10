@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <%- include("./layout/layout.css.ejs") %>
+</head>
+
+<body>
+
+    <%- include("./layout/layout.header.ejs") %>
+
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h6 class="m-0 font-weight-bold text-primary">Quản lý thương hiệu</h6>
+                    </div>
+                    <div class="col-md-4">
+
+                    </div>
+                    <div class="col-md-4">
+                        <a style="text-align: right;" class="dropdown-item" href="#" data-toggle="modal"
+                            data-target="#addcate">
+                            <i class="fas fa-plus-square" style='font-size:20px; color: 
+                        #4e73df;'></i> Add New
+                        </a>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Producer Name</th>
+                                <th>Address</th>
+                                <th>Image</th>
+                                <th>Option</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <% for (let index=0; index < producer_list.length; index++) {%>
+                                <tr>
+                                    <td>
+                                        <%= producer_list[index].dataValues.producername %>
+                                    </td>
+                                    <td>
+
+                                        <%= producer_list[index].dataValues.address %>
+                                    </td>
+                                    <td>
+                                        <img src="<%= producer_list[index].dataValues.producerimg %>"
+                                            style="width: 120px;" />
+                                    </td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <button class="btn btn-primary " type="button" data-toggle="dropdown">
+                                                <i class="fas fa-align-justify"></i></button>
+                                            <ul class="dropdown-menu">
+                                                <li> <a class="dropdown-item" href="#" data-toggle="modal"
+                                                        data-target="#detailcate<%=producer_list[index].dataValues.id %>">
+                                                        <i class="fas fa-eye"
+                                                            style='font-size:20px; color: lightsalmon;'></i> Details
+                                                    </a>
+                                                </li>
+
+                                                <li> <a class="dropdown-item" href="#" data-toggle="modal"
+                                                        data-target="#updatecate<%=producer_list[index].dataValues.id %>">
+                                                        <i class='fas fa-pencil-ruler'
+                                                            style='font-size:20px; color: blue;'></i> Update
+                                                    </a>
+                                                </li>
+                                                <li> <a class="dropdown-item"
+                                                        href="./delete_producer/<%= producer_list[index].dataValues.id %>"
+                                                        onclick="return confirm('Are you sure you want to delete this item?');"><i
+                                                            class="fas fa-trash"
+                                                            style='font-size:20px; color: 	#FF3333;'></i> Delete</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <%}%>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <% for (let index=0; index < producer_list.length; index++) {%>
+            <form action="/producer/update_producer/<%=producer_list[index].dataValues.id %>" method="POST"
+                enctype="application/x-www-form-urlencoded">
+                <div class="modal fade" id="updatecate<%=producer_list[index].dataValues.id %>" tabindex="-1"
+                    role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Cập nhật thương hiệu
+                                </h5>
+                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <input type="hidden" class="form-control" name="id"
+                                        value="<%=producer_list[index].dataValues.id %>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Producer Name</label>
+                                    <input type="text" class="form-control" name="producername"
+                                        value="<%=producer_list[index].dataValues.producername %>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Address</label>
+                                    <input type="text" class="form-control" name="address"
+                                        value="<%=producer_list[index].dataValues.address %>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Image</label>
+                                    <input type="text" class="form-control" name="producerimg"
+                                        value="<%=producer_list[index].dataValues.producerimg %>">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Update</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a href="/producer/list" class="btn btn-primary">Back</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+
+            <div class="modal fade" id="detailcate<%=producer_list[index].dataValues.id %>" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Chi tiết thương hiệu</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <table class="table table-bordered">
+                                <tbody>
+                                    <tr>
+                                        <th>Producer Name</th>
+                                        <td>
+                                            <%= producer_list[index].dataValues.producername %>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <th>Address</th>
+                                        <td>
+                                            <%= producer_list[index].dataValues.address %>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <th>Image</th>
+                                        <td>
+                                            <img src="<%= producer_list[index].dataValues.producerimg %>"
+                                                style="width: 120px;" />
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <%}%>
+                </div>
+                <form action="/producer/add_producer" method="POST" enctype="application/x-www-form-urlencoded">
+
+                    <div class="modal fade" id="addcate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Thêm danh mục mới</h5>
+                                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Producer Name</label>
+                                        <input type="text" class="form-control" name="producername">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Address</label>
+                                        <input type="text" class="form-control" name="address">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Image</label>
+                                        <input type="text" class="form-control" name="producerimg">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Add
+                                        New</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a href="/producer/list" class="btn btn-primary">Back</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+
+
+                <%- include("./layout/layout.footer.ejs") %>
+                    <%- include("./layout/layout.js.ejs") %>
+</body>
+
+</html>
