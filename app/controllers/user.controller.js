@@ -14,7 +14,9 @@ exports.allAccess = (req, res) => {
 exports.userBoard = (req, res) => {
   res.status(200).send("User Content.");
 };
-
+exports.index = (req, res) => {
+  res.render("./index.ejs");
+};
 exports.adminBoard = (req, res) => {
   res.status(200).send("Admin Content.");
 };
@@ -105,4 +107,94 @@ exports.deleteuser = async (req, res) => {
     },
   });
   await res.send({ message: "delete successfully!" });
+};
+
+
+// view 
+exports.user_list = (req, res) => {
+  User.findAll().then((users) => {
+    res.render('./user.ejs',{user_list:users});
+  });
+};
+
+exports.userbyid = (req, res) => {
+  User.findOne(
+    {
+      where :{
+          id:req.params.id
+      }
+    }
+  ).then((users) => {
+    res.json(users);
+  });
+};
+
+exports.adduser = (req, res) => {
+  User.create({
+    username: req.body.username,
+    email: req.body.email,
+    password: bcrypt.hashSync(req.body.password, 8),
+    phone: req.body.phone,
+    address: req.body.address,
+  })
+    .then((user) => {
+      if (req.body.roles) {
+        Role.findAll({
+          where: {
+            name: {
+              [Op.or]: req.body.roles,
+            },
+          },
+        }).then((roles) => {
+          user.setRoles(roles).then(() => {
+            res.send({ message: "User was registered successfully!" });
+          });
+        });
+      } else {
+        // user role = 1
+        user.setRoles([1]).then(() => {
+          res.send({ message: "User was registered successfully!" });
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(500).send({ message: err.message });
+    });
+};
+
+exports.update_user = async (req, res) => {
+  await User.update(
+    {
+      username: req.body.username,
+      email: req.body.email,
+      password: bcrypt.hashSync(req.body.password, 8),
+      phone: req.body.phone,
+      address: req.body.address,
+    },
+    {
+      where: {
+        id: req.params.id,
+      },
+    }
+  )
+    .then(() => {
+      res.send({ message: "update successfully!" });
+    })
+    .catch((err) => {
+      res.status(500).send({ message: err.message });
+    });
+};
+
+//delete
+exports.delete_user = async (req, res) => {
+  await User.destroy({
+    where: {
+      id: req.params.id,
+    },
+  }) .then(() => {
+    res.redirect("../../user/list");
+  })
+  .catch((err) => {
+    res.status(500).send({ message: err.message });
+  });
 };

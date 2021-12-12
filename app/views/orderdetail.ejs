@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <%- include("./layout/layout.css.ejs") %>
+</head>
+
+<body>
+
+    <%- include("./layout/layout.header.ejs") %>
+
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h6 class="m-0 font-weight-bold text-primary">Chi tiết đơn hàng</h6>
+                    </div>
+                    <div class="col-md-4">
+
+                    </div>
+                    <div class="col-md-4">
+                        
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <div class="row">
+                        <div class="col-sm-4">
+                          <h3>Order</h3>
+                          <table  class="table">
+                  
+                            <tr>
+                              <th scope="col">Customer</th>
+                              <td>
+                                <%= order.username %>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th scope="col">Order date</th>
+                              <td>
+                                <%= order.orderate %>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th scope="col">Price</th>
+                              <td>
+                                <%= order.totalprice %>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th scope="col">Phone</th>
+                              <td>
+                                <%= order.phone %>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th scope="col">Address</th>
+                              <td>
+                                <%= order.address %>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th scope="col">Status</th>
+                              <td>
+                                <%= order.status %>
+                              </td>
+                            </tr>
+                            <tr>
+                                
+                                <td colspan="2">
+                                    <a href="/order/list" class="btn btn-primary">Back</a>
+                                </td>
+                              </tr>
+                          </table>
+                        </div>
+                        <div class="col-sm-8">
+                          <h3>Product</h3>
+                          <table class="table ">
+                            <thead>
+                              <tr>
+                                <th scope="col">Product ID</th>
+                                <th scope="col">ProductName</th>
+                                <th scope="col">price</th>
+                                <th scope="col">Image</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                  
+                                <td>
+                                    <%= ls_product.proid %>
+                                  </td>
+                                <td>
+                                  <%= ls_product.productname %>
+                                </td>
+                                <td>
+                                  <%= ls_product.price %>
+                                </td>
+                                <td >
+                                  <img style="width: 100px;" src="<%= ls_product.imageurl %>" alt="">
+                                </td>
+                               
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                   
+                </div>
+            </div>
+        </div>
+      
+            
+        
+
+                <%- include("./layout/layout.footer.ejs") %>
+                    <%- include("./layout/layout.js.ejs") %>
+</body>
+
+</html>

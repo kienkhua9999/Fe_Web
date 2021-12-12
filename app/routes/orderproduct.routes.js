@@ -17,10 +17,17 @@ module.exports = function(app) {
   app.post("/api/order/updateorder_status/:id", controller.updateorder_status);
   //delete
   app.delete("/api/order/deleteorder/:id",controller.deleteorder);
+  
 
   //cart
   app.post("/api/order/addcart",controller.addcart);
 
   //detail user
   app.get("/api/order/cart_user/:id",controller.orderdetail_user);
+
+  //view 
+  app.get("/order/list",controller.order_list);
+  app.get("/order/byid/:id",controller.order_detail);
+  app.get("/order/delete_order/:id",controller.delete_order);
+  app.post("/order/update_status/:id", controller.update_status);
 };

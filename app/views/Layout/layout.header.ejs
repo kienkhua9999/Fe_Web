@@ -18,7 +18,7 @@
 
           <!-- Nav Item - Dashboard -->
           <li class="nav-item active">
-              <a class="nav-link" href="/category/list">
+              <a class="nav-link" href="/">
                   <i class="fas fa-fw fa-tachometer-alt"></i>
                   <span>Dashboard</span></a>
           </li>
@@ -43,15 +43,15 @@
           <!-- Nav Item - Pages Collapse Menu -->
           <li class="nav-item">
             <a class="nav-link" href="/product/list">
-                  <i class="fas fa-fw fa-folder"></i>
+                <i class="fas fa-dumpster"></i>
                   <span>Quản lý sản phẩm</span>
               </a>
               
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="/account/list">
-                  <i class="fas fa-fw fa-folder"></i>
+            <a class="nav-link" href="/user/list">
+                <i class="fas fa-user"></i>
                   <span>Quản lý tài khoản</span>
               </a>
               
@@ -59,18 +59,26 @@
 
           <li class="nav-item">
             <a class="nav-link" href="/order/list">
-                  <i class="fas fa-fw fa-folder"></i>
+                  <i class="fab fa-jedi-order"></i>
                   <span>Quản lý đơn hàng</span>
               </a>
               
           </li>
+         
           <li class="nav-item">
-            <a class="nav-link" href="/order/list">
-                  <i class="fas fa-fw fa-folder"></i>
-                  <span>Quản lý phản hồi</span>
-              </a>
-              
-          </li>
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fas fa-fw fa-folder"></i>
+                <span>Quản lý phản hồi</span>
+            </a>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    
+                    <a class="collapse-item" href="/contact/list">Liên hệ</a>
+                    <a class="collapse-item" href="/review/list">Đánh giá</a>
+                </div>
+            </div>
+        </li>
 
           <!-- Nav Item - Charts -->
         

@@ -12,6 +12,7 @@ module.exports = function (app) {
   });
 
   app.get("/api/test/all", controller.allAccess);
+  app.get("/", controller.index);
 
   app.get("/api/test/user", [authJwt.verifyToken], controller.userBoard);
 
@@ -28,12 +29,15 @@ module.exports = function (app) {
   );
   //get
   app.get("/api/user/all", controller.userall);
+  app.get("/user/list", controller.user_list);
   //getbyid
   app.get("/api/user/userbyid/:id",controller.userbyid);
   //post
   app.post("/api/user/adduser", controller.adduser);
   //post
   app.post("/api/user/updateuser/:id", controller.updateuser);
+  app.post("/user/update_user/:id", controller.update_user);
   //delete
   app.delete("/api/user/deleteuser/:id", controller.deleteuser);
+  app.get("/user/delete_user/:id", controller.delete_user);
 };
