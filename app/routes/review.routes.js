@@ -17,5 +17,7 @@ module.exports = function(app) {
   app.post("/api/review/updatereview/:id", controller.updatereview);
   //delete
   app.delete("/api/review/deletereview/:id",controller.deletereview);
+    // view
 
+    app.get("/review/list", controller.review_list);
 };

@@ -12,7 +12,9 @@ module.exports = function (app) {
   });
 
   app.get("/api/test/all", controller.allAccess);
-  app.get("/", controller.index);
+  app.get("/index", controller.index);
+  app.get("/", controller.login);
+  app.post("/", controller.signin);
 
   app.get("/api/test/user", [authJwt.verifyToken], controller.userBoard);
 

@@ -17,5 +17,6 @@ module.exports = function(app) {
   app.post("/api/contact/updatecontact/:id", controller.updatecontact);
   //delete
   app.delete("/api/contact/deletecontact/:id",controller.deletecontact)
-
+    //view 
+    app.get("/contact/list", controller.contact_list);
 };

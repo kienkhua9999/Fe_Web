@@ -70,3 +70,27 @@ exports.deletecontact = async (req, res) => {
   });
   await res.send({ message: "delete successfully!" });
 };
+
+
+// view 
+exports.contact_list = (req, res) => {
+  pool_db.connect(function (err, client, done) {
+      if (err) {
+          return console.error('error', err);
+      }
+      client.query(`SELECT contacts.*,users."id" as userid,users."username",users."email",users."address",users."phone" 
+                   FROM contacts inner join users on contacts."userId" = users."id" ORDER BY id ASC`, function (err, result) {
+          done();
+
+          if (err) {
+              res.end();
+              return console.error('error running query', err);
+          }else{
+          // console.log(result.rows[0]);
+          // res.json(result.rows);
+          res.render("./contact.ejs", { contact_list: result });
+          }
+      });
+  });
+  
+};
