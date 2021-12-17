@@ -17,7 +17,13 @@ app.set('views', path.join(__dirname, 'app/views'));
 app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'app/public')));
 
+app.set('view options', { layout:'layout.ejs' }); 
 
+// app.configure( function () {
+//   app.set('views', __dirname + '/views');
+//   app.set('view engine', 'ejs');
+//   app.use("/public", express.static(__dirname + '/public'));
+// });
 
 // parse requests of content-type - application/json
 app.use(bodyParser.json());

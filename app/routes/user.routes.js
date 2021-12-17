@@ -12,9 +12,7 @@ module.exports = function (app) {
   });
 
   app.get("/api/test/all", controller.allAccess);
-  app.get("/index", controller.index);
-  app.get("/", controller.login);
-  app.post("/", controller.signin);
+
 
   app.get("/api/test/user", [authJwt.verifyToken], controller.userBoard);
 
@@ -42,4 +40,8 @@ module.exports = function (app) {
   //delete
   app.delete("/api/user/deleteuser/:id", controller.deleteuser);
   app.get("/user/delete_user/:id", controller.delete_user);
+
+  app.get("/index", controller.index);
+  app.get("/", controller.login);
+  app.post("/", controller.signin);
 };

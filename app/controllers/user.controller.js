@@ -129,7 +129,7 @@ exports.userbyid = (req, res) => {
   });
 };
 
-exports.adduser = (req, res) => {
+exports.add_user = (req, res) => {
   User.create({
     username: req.body.username,
     email: req.body.email,
@@ -177,12 +177,12 @@ exports.update_user = async (req, res) => {
       },
     }
   )
-    .then(() => {
-      res.send({ message: "update successfully!" });
-    })
-    .catch((err) => {
-      res.status(500).send({ message: err.message });
-    });
+  .then(() => {
+    res.redirect("../../user/list");
+  })
+  .catch((err) => {
+    res.status(500).send({ message: err.message });
+  });
 };
 
 //delete
