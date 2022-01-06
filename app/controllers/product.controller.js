@@ -6,6 +6,58 @@ const Op = db.Sequelize.Op;
 var pool_db = require("../config/crdb.config").pool_db;
 const config = require("../config/auth.config");
 
+const getPagination = (page, size) => {
+  const limit = size ? +size : 10;
+  const offset = page ? page * limit : 0;
+
+  return { limit, offset };
+};
+
+const getPagingData = (data, page, limit) => {
+  const { count: totalItems, rows: tutorials } = data;
+  const currentPage = page ? +page : 0;
+  const totalPages = Math.ceil(totalItems / limit);
+
+  return { totalItems, tutorials, totalPages, currentPage };
+};
+
+exports.productPagination = (req, res) => {
+
+  const { page, size, productname } = req.query;
+  var condition = productname ? { productname: { [Op.like]: `%${productname}%` } } : null;
+
+  const { limit, offset } = getPagination(page, size);
+
+  Product.findAndCountAll({ where: condition, limit, offset })
+    .then(data => {
+      const response = getPagingData(data, page, limit);
+      res.send(response);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving tutorials."
+      });
+    });
+};
+
+exports.productPaginationPublished = (req, res) => {
+  const { page, size } = req.query;
+  const { limit, offset } = getPagination(page, size);
+
+  Product.findAndCountAll({ where: { status: true }, limit, offset })
+    .then(data => {
+      const response = getPagingData(data, page, limit);
+      res.send(response);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving tutorials."
+      });
+    });
+};
+
 exports.productall = (req, res) => {
   Product.findAll().then((products) => {
     res.json(products);

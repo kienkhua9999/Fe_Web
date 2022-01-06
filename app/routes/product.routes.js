@@ -9,6 +9,8 @@ module.exports = function(app) {
     });
   //select
   app.get("/api/product/all", controller.productall);
+  app.get("/api/productPagination", controller.productPagination);
+  app.get("/api/productPaginationPublished", controller.productPaginationPublished);
   app.get("/api/product/product_sale", controller.product_saleoff);
   app.get("/api/product/product_phonehigh", controller.product_phonehigh);
   app.get("/api/product/product_laptophigh", controller.product_laptophigh);
@@ -33,6 +35,12 @@ module.exports = function(app) {
 
   //ipad
   
+  app.get("/api/product/product_allTablet", controller.product_allTablet);
+  app.get("/api/product/product_Ipad_tb", controller.product_Ipad_tb);
+  app.get("/api/product/product_Samsung_tb", controller.product_Samsung_tb);
+  app.get("/api/product/product_Xiaome_tb", controller.product_Xiaome_tb);
+  app.get("/api/product/product_Lenove_tb", controller.product_Lenove_tb);
+  app.get("/api/product/product_Huawei_tb", controller.product_Huawei_tb);
 
 
   //byid
