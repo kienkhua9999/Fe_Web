@@ -26,12 +26,12 @@ module.exports = function(app) {
   app.get("/api/product/product_Xiaome_dt", controller.product_Xiaome_dt);
 
   //laptop
-  app.get("/api/product/product_allTablet", controller.product_allTablet);
-  app.get("/api/product/product_Ipad_tb", controller.product_Ipad_tb);
-  app.get("/api/product/product_Samsung_tb", controller.product_Samsung_tb);
-  app.get("/api/product/product_Xiaome_tb", controller.product_Xiaome_tb);
-  app.get("/api/product/product_Lenove_tb", controller.product_Lenove_tb);
-  app.get("/api/product/product_Huawei_tb", controller.product_Huawei_tb);
+  app.get("/api/product/product_allLaptop", controller.product_allLaptop);
+  app.get("/api/product/product_Macbook_mt", controller.product_Macbook_mt);
+  app.get("/api/product/product_Dell_mt", controller.product_Dell_mt);
+  app.get("/api/product/product_Lenovo_mt", controller.product_Lenovo_mt);
+  app.get("/api/product/product_Asus_mt", controller.product_Asus_mt);
+  app.get("/api/product/product_HP_mt", controller.product_HP_mt);
 
   //ipad
   
