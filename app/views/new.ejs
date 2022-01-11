@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <%- include("./layout/layout.css.ejs") %>
+</head>
+
+<body>
+
+    <%- include("./layout/layout.header.ejs") %>
+
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h6 class="m-0 font-weight-bold text-primary">Quản lý tin tức</h6>
+                    </div>
+                    <div class="col-md-4">
+
+                    </div>
+                    <div class="col-md-4">
+                        <a style="text-align: right;" class="dropdown-item" href="#" data-toggle="modal"
+                            data-target="#addcate">
+                            <i class="fas fa-plus-square" style='font-size:20px; color: 
+                        #4e73df;'></i> Thêm mới
+                        </a>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Tiêu đề</th>
+                                <th>Ngày đăng</th>
+                                <th>Ảnh</th>
+                                <th>Tùy chọn</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <% for (let index=0; index < new_list.length; index++) {%>
+                                <tr>
+                                    <td>
+                                        <%= new_list[index].dataValues.title %>
+                                    </td>
+                                    <td>
+
+                                        <%= new_list[index].dataValues.datepost %>
+                                    </td>
+                                    <td>
+                                        <img src="<%= new_list[index].dataValues.newimg %>"
+                                            style="width: 100px;" />
+                                    </td>
+                                    <td>
+                                       
+                                           
+                                            <ul style="list-style: none;display: flex;">
+                                                <li> <a  href="#" data-toggle="modal"
+                                                        data-target="#detailcate<%=new_list[index].dataValues.id %>">
+                                                        <i class="fas fa-eye"
+                                                            style='font-size:20px; color: lightsalmon;'></i>&nbsp;&nbsp;&nbsp;
+                                                    </a>
+                                                </li>
+
+                                                <li> <a  href="#" data-toggle="modal"
+                                                        data-target="#updatecate<%=new_list[index].dataValues.id %>">
+                                                        <i class='fas fa-pencil-ruler'
+                                                            style='font-size:20px; color: blue;'></i>&nbsp;&nbsp;&nbsp; 
+                                                    </a>
+                                                </li>
+                                                <li> <a 
+                                                        href="./delete_new/<%= new_list[index].dataValues.id %>"
+                                                        onclick="return confirm('Are you sure you want to delete this item?');"><i
+                                                            class="fas fa-trash"
+                                                            style='font-size:20px; color: 	#FF3333;'></i>&nbsp;&nbsp;&nbsp; </a>
+                                                </li>
+                                            </ul>
+                                       
+                                    </td>
+                                </tr>
+                                <%}%>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+       
+        <% for (let index=0; index < new_list.length; index++) {%>
+            <form action="/new/update_new/<%=new_list[index].dataValues.id %>" method="POST"
+                enctype="application/x-www-form-urlencoded">
+                <div class="modal fade" id="updatecate<%=new_list[index].dataValues.id %>" tabindex="-1"
+                    role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Cập nhật tin tức
+                                </h5>
+                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <input type="hidden" class="form-control" name="id"
+                                        value="<%=new_list[index].dataValues.id %>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Tiêu đề</label>
+                                    <input type="text" class="form-control" name="title"
+                                        value="<%=new_list[index].dataValues.title %>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Nội dung</label>
+                                    <input type="text" class="form-control" name="content"
+                                        value="<%=new_list[index].dataValues.content %>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Ngày đăng</label>
+                                    <input type="date" class="form-control" name="datepost"
+                                        value="<%=new_list[index].dataValues.datepost %>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Image</label>
+                                    <input type="text" class="form-control" name="datepost"
+                                        value="<%=new_list[index].dataValues.newimg %>">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Update</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a href="/new/list" class="btn btn-primary">Back</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+
+            <div class="modal fade" id="detailcate<%=new_list[index].dataValues.id %>" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Chi tiết tin tức</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <table class="table table-bordered">
+                                <tbody>
+                                    <tr>
+                                        <th>Tiêu đề</th>
+                                        <td>
+                                            <%= new_list[index].dataValues.title %>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <th>Nội dung</th>
+                                        <td>
+                                            <%= new_list[index].dataValues.content %>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <th>Ngày đăng</th>
+                                        <td>
+                                            <%= new_list[index].dataValues.datepost %>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <th>Ảnh</th>
+                                        <td>
+                                            <img src="<%= new_list[index].dataValues.newimg %>"
+                                                style="width: 120px;" />
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <%}%>
+                </div>
+                <form action="/new/add_new" method="POST" enctype="application/x-www-form-urlencoded">
+
+                    <div class="modal fade" id="addcate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Thêm tin tức mới</i></h5>
+                                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Tiêu đề</label>
+                                        <input type="text" class="form-control" name="title">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Nội dung</label>
+                                        <input type="text" class="form-control" name="content">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Ngày đăng</label>
+                                        <input type="date" class="form-control" name="datepost">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Ảnh</label>
+                                        <input type="text" class="form-control" name="newimg">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Add
+                                        New</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a href="/new/list" class="btn btn-primary">Back</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+
+
+
+                <%- include("./layout/layout.footer.ejs") %>
+                    <%- include("./layout/layout.js.ejs") %>
+</body>
+
+
+</html>

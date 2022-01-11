@@ -41,6 +41,26 @@ exports.productPagination = (req, res) => {
     });
 };
 
+exports.product_seach = (req, res) => {
+
+  const  {productname} = req.body;
+  var condition = productname ? { productname: { [Op.like]: `%${productname}%` } } : null;
+
+ 
+
+  Product.findAndCountAll({ where: condition })
+    .then(data => {
+     
+      res.json(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Lỗi"
+      });
+    });
+};
+
 exports.productPaginationPublished = (req, res) => {
   const { page, size } = req.query;
   const { limit, offset } = getPagination(page, size);

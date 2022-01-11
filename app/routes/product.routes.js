@@ -11,6 +11,7 @@ module.exports = function(app) {
   app.get("/api/product/all", controller.productall);
   app.get("/api/productPagination", controller.productPagination);
   app.get("/api/productPaginationPublished", controller.productPaginationPublished);
+  app.post("/api/product/seach", controller.product_seach);
   app.get("/api/product/product_sale", controller.product_saleoff);
   app.get("/api/product/product_phonehigh", controller.product_phonehigh);
   app.get("/api/product/product_laptophigh", controller.product_laptophigh);

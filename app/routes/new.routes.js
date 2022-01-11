@@ -16,6 +16,13 @@ module.exports = function(app) {
   //update
   app.post("/api/new/updatenew/:id", controller.updatenew);
   //delete
-  app.delete("/api/new/deletenew/:id",controller.deletenew)
+  app.delete("/api/new/deletenew/:id",controller.deletenew);
 
+  //view
+  app.get("/new/list", controller.new_list);
+  app.post("/new/add_new", controller.add_news);
+  //update
+  app.post("/new/update_new/:id", controller.update_news);
+  //delete
+  app.get("/new/delete_new/:id",controller.delete_new);
 };
