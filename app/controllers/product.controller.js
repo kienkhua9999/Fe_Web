@@ -268,8 +268,8 @@ exports.product_dhthoitrang = (req, res) => {
   });
 };
 
-// theo điện thoai
-exports.product_allPhone = (req, res) => {
+// theo theo id danh mục
+exports.product_byidcategory = (req, res) => {
   pool_db.connect(function (err, client, done) {
     if (err) {
       return console.error("error", err);
@@ -277,7 +277,7 @@ exports.product_allPhone = (req, res) => {
     var id = req.params.id;
     client.query(
       `SELECT products.*,categories."id" as cateid,categories."categoryname",producers."id" as prodid,producers."producername",producers."address" 
-                  FROM products inner join categories on products."categoryId" = categories."id" inner join producers on products."producerId" = producers."id" WHERE products."categoryId">10 and products."categoryId"<16`,
+                  FROM products inner join categories on products."categoryId" = categories."id" inner join producers on products."producerId" = producers."id" WHERE categories."id"=${id}`,
       function (err, result) {
         done();
 
@@ -291,15 +291,101 @@ exports.product_allPhone = (req, res) => {
   });
 };
 
-exports.product_IPhone_dt = (req, res) => {
+// theo từng thương hiệu 
+//dien thoại
+exports.product_iphone = (req, res) => {
   pool_db.connect(function (err, client, done) {
     if (err) {
       return console.error("error", err);
     }
-    var id = req.params.id;
+
     client.query(
       `SELECT products.*,categories."id" as cateid,categories."categoryname",producers."id" as prodid,producers."producername",producers."address" 
-                  FROM products inner join categories on products."categoryId" = categories."id" inner join producers on products."producerId" = producers."id" WHERE products."categoryId"=11`,
+                  FROM products inner join categories on products."categoryId" = categories."id" inner join producers on products."producerId" = producers."id" WHERE products."producerId"=1`,
+      function (err, result) {
+        done();
+
+        if (err) {
+          res.end();
+          return console.error("error running query", err);
+        }
+        res.json(result.rows);
+      }
+    );
+  });
+};
+exports.product_oppo = (req, res) => {
+  pool_db.connect(function (err, client, done) {
+    if (err) {
+      return console.error("error", err);
+    }
+
+    client.query(
+      `SELECT products.*,categories."id" as cateid,categories."categoryname",producers."id" as prodid,producers."producername",producers."address" 
+                  FROM products inner join categories on products."categoryId" = categories."id" inner join producers on products."producerId" = producers."id" WHERE products."producerId"=4`,
+      function (err, result) {
+        done();
+
+        if (err) {
+          res.end();
+          return console.error("error running query", err);
+        }
+        res.json(result.rows);
+      }
+    );
+  });
+};
+exports.product_samsung = (req, res) => {
+  pool_db.connect(function (err, client, done) {
+    if (err) {
+      return console.error("error", err);
+    }
+
+    client.query(
+      `SELECT products.*,categories."id" as cateid,categories."categoryname",producers."id" as prodid,producers."producername",producers."address" 
+                  FROM products inner join categories on products."categoryId" = categories."id" inner join producers on products."producerId" = producers."id" WHERE products."producerId"=5`,
+      function (err, result) {
+        done();
+
+        if (err) {
+          res.end();
+          return console.error("error running query", err);
+        }
+        res.json(result.rows);
+      }
+    );
+  });
+};
+exports.product_xiaome = (req, res) => {
+  pool_db.connect(function (err, client, done) {
+    if (err) {
+      return console.error("error", err);
+    }
+
+    client.query(
+      `SELECT products.*,categories."id" as cateid,categories."categoryname",producers."id" as prodid,producers."producername",producers."address" 
+                  FROM products inner join categories on products."categoryId" = categories."id" inner join producers on products."producerId" = producers."id" WHERE products."producerId"=6`,
+      function (err, result) {
+        done();
+
+        if (err) {
+          res.end();
+          return console.error("error running query", err);
+        }
+        res.json(result.rows);
+      }
+    );
+  });
+};
+exports.product_vivo = (req, res) => {
+  pool_db.connect(function (err, client, done) {
+    if (err) {
+      return console.error("error", err);
+    }
+
+    client.query(
+      `SELECT products.*,categories."id" as cateid,categories."categoryname",producers."id" as prodid,producers."producername",producers."address" 
+                  FROM products inner join categories on products."categoryId" = categories."id" inner join producers on products."producerId" = producers."id" WHERE products."producerId"=7`,
       function (err, result) {
         done();
 
@@ -313,15 +399,185 @@ exports.product_IPhone_dt = (req, res) => {
   });
 };
 
-exports.product_Samsung_dt = (req, res) => {
+//may tính
+exports.product_macbook = (req, res) => {
   pool_db.connect(function (err, client, done) {
     if (err) {
       return console.error("error", err);
     }
-    var id = req.params.id;
+
     client.query(
       `SELECT products.*,categories."id" as cateid,categories."categoryname",producers."id" as prodid,producers."producername",producers."address" 
-                  FROM products inner join categories on products."categoryId" = categories."id" inner join producers on products."producerId" = producers."id" WHERE products."categoryId"=12`,
+                  FROM products inner join categories on products."categoryId" = categories."id" inner join producers on products."producerId" = producers."id" WHERE products."producerId"=8`,
+      function (err, result) {
+        done();
+
+        if (err) {
+          res.end();
+          return console.error("error running query", err);
+        }
+        res.json(result.rows);
+      }
+    );
+  });
+};
+exports.product_dell = (req, res) => {
+  pool_db.connect(function (err, client, done) {
+    if (err) {
+      return console.error("error", err);
+    }
+
+    client.query(
+      `SELECT products.*,categories."id" as cateid,categories."categoryname",producers."id" as prodid,producers."producername",producers."address" 
+                  FROM products inner join categories on products."categoryId" = categories."id" inner join producers on products."producerId" = producers."id" WHERE products."producerId"=9`,
+      function (err, result) {
+        done();
+
+        if (err) {
+          res.end();
+          return console.error("error running query", err);
+        }
+        res.json(result.rows);
+      }
+    );
+  });
+};
+exports.product_ausu = (req, res) => {
+  pool_db.connect(function (err, client, done) {
+    if (err) {
+      return console.error("error", err);
+    }
+
+    client.query(
+      `SELECT products.*,categories."id" as cateid,categories."categoryname",producers."id" as prodid,producers."producername",producers."address" 
+                  FROM products inner join categories on products."categoryId" = categories."id" inner join producers on products."producerId" = producers."id" WHERE products."producerId"=10`,
+      function (err, result) {
+        done();
+
+        if (err) {
+          res.end();
+          return console.error("error running query", err);
+        }
+        res.json(result.rows);
+      }
+    );
+  });
+};
+exports.product_lenovo = (req, res) => {
+  pool_db.connect(function (err, client, done) {
+    if (err) {
+      return console.error("error", err);
+    }
+
+    client.query(
+      `SELECT products.*,categories."id" as cateid,categories."categoryname",producers."id" as prodid,producers."producername",producers."address" 
+                  FROM products inner join categories on products."categoryId" = categories."id" inner join producers on products."producerId" = producers."id" WHERE products."producerId"=11`,
+      function (err, result) {
+        done();
+
+        if (err) {
+          res.end();
+          return console.error("error running query", err);
+        }
+        res.json(result.rows);
+      }
+    );
+  });
+};
+exports.product_hp = (req, res) => {
+  pool_db.connect(function (err, client, done) {
+    if (err) {
+      return console.error("error", err);
+    }
+
+    client.query(
+      `SELECT products.*,categories."id" as cateid,categories."categoryname",producers."id" as prodid,producers."producername",producers."address" 
+                  FROM products inner join categories on products."categoryId" = categories."id" inner join producers on products."producerId" = producers."id" WHERE products."producerId"=12`,
+      function (err, result) {
+        done();
+
+        if (err) {
+          res.end();
+          return console.error("error running query", err);
+        }
+        res.json(result.rows);
+      }
+    );
+  });
+};
+//may tính bảng
+exports.product_ipad = (req, res) => {
+  pool_db.connect(function (err, client, done) {
+    if (err) {
+      return console.error("error", err);
+    }
+
+    client.query(
+      `SELECT products.*,categories."id" as cateid,categories."categoryname",producers."id" as prodid,producers."producername",producers."address" 
+                  FROM products inner join categories on products."categoryId" = categories."id" inner join producers on products."producerId" = producers."id" WHERE products."producerId"=13`,
+      function (err, result) {
+        done();
+
+        if (err) {
+          res.end();
+          return console.error("error running query", err);
+        }
+        res.json(result.rows);
+      }
+    );
+  });
+};
+exports.product_samsung_tb = (req, res) => {
+  pool_db.connect(function (err, client, done) {
+    if (err) {
+      return console.error("error", err);
+    }
+
+    client.query(
+      `SELECT products.*,categories."id" as cateid,categories."categoryname",producers."id" as prodid,producers."producername",producers."address" 
+                  FROM products inner join categories on products."categoryId" = categories."id" inner join producers on products."producerId" = producers."id" WHERE products."producerId"=5 and products."categoryId" = 6 `,
+      function (err, result) {
+        done();
+
+        if (err) {
+          res.end();
+          return console.error("error running query", err);
+        }
+        res.json(result.rows);
+      }
+    );
+  });
+};
+exports.product_xiaome_tb = (req, res) => {
+  pool_db.connect(function (err, client, done) {
+    if (err) {
+      return console.error("error", err);
+    }
+
+    client.query(
+      `SELECT products.*,categories."id" as cateid,categories."categoryname",producers."id" as prodid,producers."producername",producers."address" 
+                  FROM products inner join categories on products."categoryId" = categories."id" inner join producers on products."producerId" = producers."id" WHERE products."producerId"=6 and products."categoryId" = 6`,
+      function (err, result) {
+        done();
+
+        if (err) {
+          res.end();
+          return console.error("error running query", err);
+        }
+        res.json(result.rows);
+      }
+    );
+  });
+};
+exports.product_huawai = (req, res) => {
+  pool_db.connect(function (err, client, done) {
+    if (err) {
+      return console.error("error", err);
+    }
+
+    client.query(
+      `SELECT products.*,categories."id" as cateid,categories."categoryname",producers."id" as prodid,producers."producername",producers."address" 
+                  FROM products inner join categories on products."categoryId" = categories."id" inner join producers on products."producerId" = producers."id" WHERE products."producerId"=14`,
       function (err, result) {
         done();
 
@@ -335,7 +591,48 @@ exports.product_Samsung_dt = (req, res) => {
   });
 };
 
-exports.product_Oppo_dt = (req, res) => {
+// giá
+
+exports.product_lowprice = (req, res) => {
+  pool_db.connect(function (err, client, done) {
+      if (err) {
+          return console.error('error', err);
+      }
+      var id = req.params.id;
+      client.query(`SELECT products.*,categories."id" as cateid,categories."categoryname",producers."id" as prodid,producers."producername",producers."address" 
+      FROM products inner join categories on products."categoryId" = categories."id" inner join producers on products."producerId" = producers."id" where categories."id"=${id} ORDER BY price ASC LIMIT 20 `, function (err, result) {
+          done();
+
+          if (err) {
+              res.end();
+              return console.error('error running query', err);
+          }
+          res.json(result.rows);  
+      });
+  });
+};
+exports.product_highprice = (req, res) => {
+  pool_db.connect(function (err, client, done) {
+      if (err) {
+          return console.error('error', err);
+      }
+      var id = req.params.id;
+      client.query(`SELECT products.*,categories."id" as cateid,categories."categoryname",producers."id" as prodid,producers."producername",producers."address" 
+      FROM products inner join categories on products."categoryId" = categories."id" inner join producers on products."producerId" = producers."id" where categories."id"=${id} ORDER BY price DESC LIMIT 20`, function (err, result) {
+          done();
+
+          if (err) {
+              res.end();
+              return console.error('error running query', err);
+          }
+          res.json(result.rows);  
+      });
+  });
+};
+
+// giảm giá
+
+exports.product_saleGG = (req, res) => {
   pool_db.connect(function (err, client, done) {
     if (err) {
       return console.error("error", err);
@@ -343,7 +640,7 @@ exports.product_Oppo_dt = (req, res) => {
     var id = req.params.id;
     client.query(
       `SELECT products.*,categories."id" as cateid,categories."categoryname",producers."id" as prodid,producers."producername",producers."address" 
-                  FROM products inner join categories on products."categoryId" = categories."id" inner join producers on products."producerId" = producers."id" WHERE products."categoryId"=13`,
+                  FROM products inner join categories on products."categoryId" = categories."id" inner join producers on products."producerId" = producers."id" WHERE categories."id"=${id} and products."saleoff">0 LIMIT 20`,
       function (err, result) {
         done();
 
@@ -356,320 +653,6 @@ exports.product_Oppo_dt = (req, res) => {
     );
   });
 };
-
-exports.product_Vivo_dt = (req, res) => {
-  pool_db.connect(function (err, client, done) {
-    if (err) {
-      return console.error("error", err);
-    }
-    var id = req.params.id;
-    client.query(
-      `SELECT products.*,categories."id" as cateid,categories."categoryname",producers."id" as prodid,producers."producername",producers."address" 
-                  FROM products inner join categories on products."categoryId" = categories."id" inner join producers on products."producerId" = producers."id" WHERE products."categoryId"=14`,
-      function (err, result) {
-        done();
-
-        if (err) {
-          res.end();
-          return console.error("error running query", err);
-        }
-        res.json(result.rows);
-      }
-    );
-  });
-};
-
-exports.product_Xiaome_dt = (req, res) => {
-  pool_db.connect(function (err, client, done) {
-    if (err) {
-      return console.error("error", err);
-    }
-    var id = req.params.id;
-    client.query(
-      `SELECT products.*,categories."id" as cateid,categories."categoryname",producers."id" as prodid,producers."producername",producers."address" 
-                  FROM products inner join categories on products."categoryId" = categories."id" inner join producers on products."producerId" = producers."id" WHERE products."categoryId"=15`,
-      function (err, result) {
-        done();
-
-        if (err) {
-          res.end();
-          return console.error("error running query", err);
-        }
-        res.json(result.rows);
-      }
-    );
-  });
-};
-
-// máy tinh 
-
-exports.product_allLaptop = (req, res) => {
-  pool_db.connect(function (err, client, done) {
-    if (err) {
-      return console.error("error", err);
-    }
-    var id = req.params.id;
-    client.query(
-      `SELECT products.*,categories."id" as cateid,categories."categoryname",producers."id" as prodid,producers."producername",producers."address" 
-                  FROM products inner join categories on products."categoryId" = categories."id" inner join producers on products."producerId" = producers."id" WHERE products."categoryId">15 and products."categoryId"<21`,
-      function (err, result) {
-        done();
-
-        if (err) {
-          res.end();
-          return console.error("error running query", err);
-        }
-        res.json(result.rows);
-      }
-    );
-  });
-};
-
-exports.product_Macbook_mt = (req, res) => {
-  pool_db.connect(function (err, client, done) {
-    if (err) {
-      return console.error("error", err);
-    }
-    var id = req.params.id;
-    client.query(
-      `SELECT products.*,categories."id" as cateid,categories."categoryname",producers."id" as prodid,producers."producername",producers."address" 
-                  FROM products inner join categories on products."categoryId" = categories."id" inner join producers on products."producerId" = producers."id" WHERE products."categoryId"=16`,
-      function (err, result) {
-        done();
-
-        if (err) {
-          res.end();
-          return console.error("error running query", err);
-        }
-        res.json(result.rows);
-      }
-    );
-  });
-};
-
-exports.product_Dell_mt = (req, res) => {
-  pool_db.connect(function (err, client, done) {
-    if (err) {
-      return console.error("error", err);
-    }
-    var id = req.params.id;
-    client.query(
-      `SELECT products.*,categories."id" as cateid,categories."categoryname",producers."id" as prodid,producers."producername",producers."address" 
-                  FROM products inner join categories on products."categoryId" = categories."id" inner join producers on products."producerId" = producers."id" WHERE products."categoryId"=17`,
-      function (err, result) {
-        done();
-
-        if (err) {
-          res.end();
-          return console.error("error running query", err);
-        }
-        res.json(result.rows);
-      }
-    );
-  });
-};
-
-exports.product_Asus_mt = (req, res) => {
-  pool_db.connect(function (err, client, done) {
-    if (err) {
-      return console.error("error", err);
-    }
-    var id = req.params.id;
-    client.query(
-      `SELECT products.*,categories."id" as cateid,categories."categoryname",producers."id" as prodid,producers."producername",producers."address" 
-                  FROM products inner join categories on products."categoryId" = categories."id" inner join producers on products."producerId" = producers."id" WHERE products."categoryId"=18`,
-      function (err, result) {
-        done();
-
-        if (err) {
-          res.end();
-          return console.error("error running query", err);
-        }
-        res.json(result.rows);
-      }
-    );
-  });
-};
-
-exports.product_Lenovo_mt = (req, res) => {
-  pool_db.connect(function (err, client, done) {
-    if (err) {
-      return console.error("error", err);
-    }
-    var id = req.params.id;
-    client.query(
-      `SELECT products.*,categories."id" as cateid,categories."categoryname",producers."id" as prodid,producers."producername",producers."address" 
-                  FROM products inner join categories on products."categoryId" = categories."id" inner join producers on products."producerId" = producers."id" WHERE products."categoryId"=19`,
-      function (err, result) {
-        done();
-
-        if (err) {
-          res.end();
-          return console.error("error running query", err);
-        }
-        res.json(result.rows);
-      }
-    );
-  });
-};
-
-exports.product_HP_mt = (req, res) => {
-  pool_db.connect(function (err, client, done) {
-    if (err) {
-      return console.error("error", err);
-    }
-    var id = req.params.id;
-    client.query(
-      `SELECT products.*,categories."id" as cateid,categories."categoryname",producers."id" as prodid,producers."producername",producers."address" 
-                  FROM products inner join categories on products."categoryId" = categories."id" inner join producers on products."producerId" = producers."id" WHERE products."categoryId"=20`,
-      function (err, result) {
-        done();
-
-        if (err) {
-          res.end();
-          return console.error("error running query", err);
-        }
-        res.json(result.rows);
-      }
-    );
-  });
-};
-
-// Tablet 
-
-exports.product_allTablet = (req, res) => {
-  pool_db.connect(function (err, client, done) {
-    if (err) {
-      return console.error("error", err);
-    }
-    var id = req.params.id;
-    client.query(
-      `SELECT products.*,categories."id" as cateid,categories."categoryname",producers."id" as prodid,producers."producername",producers."address" 
-                  FROM products inner join categories on products."categoryId" = categories."id" inner join producers on products."producerId" = producers."id" WHERE products."categoryId">20 and products."categoryId"<26`,
-      function (err, result) {
-        done();
-
-        if (err) {
-          res.end();
-          return console.error("error running query", err);
-        }
-        res.json(result.rows);
-      }
-    );
-  });
-};
-
-exports.product_Ipad_tb = (req, res) => {
-  pool_db.connect(function (err, client, done) {
-    if (err) {
-      return console.error("error", err);
-    }
-    var id = req.params.id;
-    client.query(
-      `SELECT products.*,categories."id" as cateid,categories."categoryname",producers."id" as prodid,producers."producername",producers."address" 
-                  FROM products inner join categories on products."categoryId" = categories."id" inner join producers on products."producerId" = producers."id" WHERE products."categoryId"=21`,
-      function (err, result) {
-        done();
-
-        if (err) {
-          res.end();
-          return console.error("error running query", err);
-        }
-        res.json(result.rows);
-      }
-    );
-  });
-};
-
-exports.product_Samsung_tb = (req, res) => {
-  pool_db.connect(function (err, client, done) {
-    if (err) {
-      return console.error("error", err);
-    }
-    var id = req.params.id;
-    client.query(
-      `SELECT products.*,categories."id" as cateid,categories."categoryname",producers."id" as prodid,producers."producername",producers."address" 
-                  FROM products inner join categories on products."categoryId" = categories."id" inner join producers on products."producerId" = producers."id" WHERE products."categoryId"=22`,
-      function (err, result) {
-        done();
-
-        if (err) {
-          res.end();
-          return console.error("error running query", err);
-        }
-        res.json(result.rows);
-      }
-    );
-  });
-};
-
-exports.product_Xiaome_tb = (req, res) => {
-  pool_db.connect(function (err, client, done) {
-    if (err) {
-      return console.error("error", err);
-    }
-    var id = req.params.id;
-    client.query(
-      `SELECT products.*,categories."id" as cateid,categories."categoryname",producers."id" as prodid,producers."producername",producers."address" 
-                  FROM products inner join categories on products."categoryId" = categories."id" inner join producers on products."producerId" = producers."id" WHERE products."categoryId"=23`,
-      function (err, result) {
-        done();
-
-        if (err) {
-          res.end();
-          return console.error("error running query", err);
-        }
-        res.json(result.rows);
-      }
-    );
-  });
-};
-
-exports.product_Huawei_tb = (req, res) => {
-  pool_db.connect(function (err, client, done) {
-    if (err) {
-      return console.error("error", err);
-    }
-    var id = req.params.id;
-    client.query(
-      `SELECT products.*,categories."id" as cateid,categories."categoryname",producers."id" as prodid,producers."producername",producers."address" 
-                  FROM products inner join categories on products."categoryId" = categories."id" inner join producers on products."producerId" = producers."id" WHERE products."categoryId"=24`,
-      function (err, result) {
-        done();
-
-        if (err) {
-          res.end();
-          return console.error("error running query", err);
-        }
-        res.json(result.rows);
-      }
-    );
-  });
-};
-
-exports.product_Lenove_tb = (req, res) => {
-  pool_db.connect(function (err, client, done) {
-    if (err) {
-      return console.error("error", err);
-    }
-    var id = req.params.id;
-    client.query(
-      `SELECT products.*,categories."id" as cateid,categories."categoryname",producers."id" as prodid,producers."producername",producers."address" 
-                  FROM products inner join categories on products."categoryId" = categories."id" inner join producers on products."producerId" = producers."id" WHERE products."categoryId"=25`,
-      function (err, result) {
-        done();
-
-        if (err) {
-          res.end();
-          return console.error("error running query", err);
-        }
-        res.json(result.rows);
-      }
-    );
-  });
-};
-
-
 
 // view
 

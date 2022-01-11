@@ -18,31 +18,32 @@ module.exports = function(app) {
   app.get("/api/product/product_dhthoitrang", controller.product_dhthoitrang);
   app.get("/api/product/product_dhthongminh", controller.product_dhthongminh);
 
-  //phone
-  app.get("/api/product/product_allPhone", controller.product_allPhone);
-  app.get("/api/product/product_IPhone_dt", controller.product_IPhone_dt);
-  app.get("/api/product/product_Samsung_dt", controller.product_Samsung_dt);
-  app.get("/api/product/product_Oppo_dt", controller.product_Oppo_dt);
-  app.get("/api/product/product_Vivo_dt", controller.product_Vivo_dt);
-  app.get("/api/product/product_Xiaome_dt", controller.product_Xiaome_dt);
+  app.get("/api/product/categoryid/:id", controller.product_byidcategory);
+ 
+//dien thaoi 
+app.get("/api/product/product_iphone", controller.product_iphone);
+app.get("/api/product/product_oppo", controller.product_oppo);
+app.get("/api/product/product_samsung", controller.product_samsung);
+app.get("/api/product/product_xiaome", controller.product_xiaome);
+app.get("/api/product/product_vivo", controller.product_vivo);
 
-  //laptop
-  app.get("/api/product/product_allLaptop", controller.product_allLaptop);
-  app.get("/api/product/product_Macbook_mt", controller.product_Macbook_mt);
-  app.get("/api/product/product_Dell_mt", controller.product_Dell_mt);
-  app.get("/api/product/product_Lenovo_mt", controller.product_Lenovo_mt);
-  app.get("/api/product/product_Asus_mt", controller.product_Asus_mt);
-  app.get("/api/product/product_HP_mt", controller.product_HP_mt);
+// laptop
+app.get("/api/product/product_macbook", controller.product_macbook);
+app.get("/api/product/product_dell", controller.product_dell);
+app.get("/api/product/product_ausu", controller.product_ausu);
+app.get("/api/product/product_lenovo", controller.product_lenovo);
+app.get("/api/product/product_hp", controller.product_hp);
+//ipad
+app.get("/api/product/product_ipad", controller.product_ipad);
+app.get("/api/product/product_huawai", controller.product_huawai);
+app.get("/api/product/product_samsung_tb", controller.product_samsung_tb);
+app.get("/api/product/product_xiaome_tb", controller.product_xiaome_tb);
 
-  //ipad
-  
-  app.get("/api/product/product_allTablet", controller.product_allTablet);
-  app.get("/api/product/product_Ipad_tb", controller.product_Ipad_tb);
-  app.get("/api/product/product_Samsung_tb", controller.product_Samsung_tb);
-  app.get("/api/product/product_Xiaome_tb", controller.product_Xiaome_tb);
-  app.get("/api/product/product_Lenove_tb", controller.product_Lenove_tb);
-  app.get("/api/product/product_Huawei_tb", controller.product_Huawei_tb);
-
+// tăng giảm
+app.get("/api/product/product_highprice/:id", controller.product_highprice);
+app.get("/api/product/product_lowprice/:id", controller.product_lowprice);
+//giam gia
+app.get("/api/product/product_saleGG/:id", controller.product_saleGG);
 
   //byid
   app.get("/api/product/productbyid/:id", controller.productbyid);
