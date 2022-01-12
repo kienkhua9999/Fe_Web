@@ -9,7 +9,6 @@ module.exports = function(app) {
     });
   //select
   app.get("/api/product/all", controller.productall);
-  app.get("/api/productPagination", controller.productPagination);
   app.get("/api/productPaginationPublished", controller.productPaginationPublished);
   app.post("/api/product/seach", controller.product_seach);
   app.get("/api/product/product_sale", controller.product_saleoff);
@@ -18,7 +17,9 @@ module.exports = function(app) {
   app.get("/api/product/product_dhthoitrang", controller.product_dhthoitrang);
   app.get("/api/product/product_dhthongminh", controller.product_dhthongminh);
 
-  app.get("/api/product/categoryid/:id", controller.product_byidcategory);
+  // app.get("/api/product/categoryid/:id", controller.product_byidcategory);
+  // san pham theo danh muc - phan trang
+  app.get("/api/product/categoryid/:categoryId", controller.productPagination_category);
  
 //dien thaoi 
 app.get("/api/product/product_iphone", controller.product_iphone);

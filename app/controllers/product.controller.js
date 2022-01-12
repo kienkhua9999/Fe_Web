@@ -21,14 +21,14 @@ const getPagingData = (data, page, limit) => {
   return { totalItems, tutorials, totalPages, currentPage };
 };
 
-exports.productPagination = (req, res) => {
+exports.productPagination_category = (req, res) => {
 
   const { page, size, productname } = req.query;
   var condition = productname ? { productname: { [Op.like]: `%${productname}%` } } : null;
 
   const { limit, offset } = getPagination(page, size);
 
-  Product.findAndCountAll({ where: condition, limit, offset })
+  Product.findAndCountAll({ where: {categoryId: req.params.categoryId}, condition, limit, offset })
     .then(data => {
       const response = getPagingData(data, page, limit);
       res.send(response);
@@ -269,27 +269,27 @@ exports.product_dhthoitrang = (req, res) => {
 };
 
 // theo theo id danh mục
-exports.product_byidcategory = (req, res) => {
-  pool_db.connect(function (err, client, done) {
-    if (err) {
-      return console.error("error", err);
-    }
-    var id = req.params.id;
-    client.query(
-      `SELECT products.*,categories."id" as cateid,categories."categoryname",producers."id" as prodid,producers."producername",producers."address" 
-                  FROM products inner join categories on products."categoryId" = categories."id" inner join producers on products."producerId" = producers."id" WHERE categories."id"=${id}`,
-      function (err, result) {
-        done();
+// exports.product_byidcategory = (req, res) => {
+//   pool_db.connect(function (err, client, done) {
+//     if (err) {
+//       return console.error("error", err);
+//     }
+//     var id = req.params.id;
+//     client.query(
+//       `SELECT products.*,categories."id" as cateid,categories."categoryname",producers."id" as prodid,producers."producername",producers."address" 
+//                   FROM products inner join categories on products."categoryId" = categories."id" inner join producers on products."producerId" = producers."id" WHERE categories."id"=${id}`,
+//       function (err, result) {
+//         done();
 
-        if (err) {
-          res.end();
-          return console.error("error running query", err);
-        }
-        res.json(result.rows);
-      }
-    );
-  });
-};
+//         if (err) {
+//           res.end();
+//           return console.error("error running query", err);
+//         }
+//         res.json(result.rows);
+//       }
+//     );
+//   });
+// };
 
 // theo từng thương hiệu 
 //dien thoại
