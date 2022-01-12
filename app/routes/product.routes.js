@@ -17,9 +17,9 @@ module.exports = function(app) {
   app.get("/api/product/product_dhthoitrang", controller.product_dhthoitrang);
   app.get("/api/product/product_dhthongminh", controller.product_dhthongminh);
 
-  // app.get("/api/product/categoryid/:id", controller.product_byidcategory);
+  app.get("/api/product/categoryid/:id", controller.product_byidcategory);
   // san pham theo danh muc - phan trang
-  app.get("/api/product/categoryid/:categoryId", controller.productPagination_category);
+  app.get("/api/product/productPagination_category/:categoryId", controller.productPagination_category);
  
 //dien thaoi 
 app.get("/api/product/product_iphone", controller.product_iphone);
