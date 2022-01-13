@@ -45,6 +45,13 @@ app.get("/api/product/product_highprice/:id", controller.product_highprice);
 app.get("/api/product/product_lowprice/:id", controller.product_lowprice);
 //giam gia
 app.get("/api/product/product_saleGG/:id", controller.product_saleGG);
+//tung danh muc
+app.get("/api/product/product_dt", controller.product_dt);
+app.get("/api/product/product_ipd", controller.product_ipd);
+app.get("/api/product/product_lt", controller.product_lt);
+app.get("/api/product/product_dhtm", controller.product_dhtm);
+app.get("/api/product/product_dhtt", controller.product_dhtt);
+app.get("/api/product/product_mi", controller.product_mi);
 
   //byid
   app.get("/api/product/productbyid/:id", controller.productbyid);
