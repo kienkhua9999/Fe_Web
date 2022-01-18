@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require("express");
 var path = require('path');
 const bodyParser = require("body-parser");
@@ -35,7 +36,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 // set port, listen for requests
-const PORT = process.env.PORT || 2453;
+const PORT = process.env.APP_POST;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });

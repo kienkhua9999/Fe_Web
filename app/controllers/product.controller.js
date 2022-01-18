@@ -31,7 +31,7 @@ exports.productPagination_category = (req, res) => {
   Product.findAndCountAll({ where: {categoryId: req.params.categoryId}, condition, limit, offset })
     .then(data => {
       const response = getPagingData(data, page, limit);
-      res.send(response);
+      res.json(response);
     })
     .catch(err => {
       res.status(500).send({
@@ -188,7 +188,7 @@ exports.product_phonehigh = (req, res) => {
     var id = req.params.id;
     client.query(
       `SELECT products.*,categories."id" as cateid,categories."categoryname",producers."id" as prodid,producers."producername",producers."address" 
-                  FROM products inner join categories on products."categoryId" = categories."id" inner join producers on products."producerId" = producers."id" WHERE products."categoryId">10 and products."categoryId"<16 ORDER BY RANDOM() LIMIT 10`,
+                  FROM products inner join categories on products."categoryId" = categories."id" inner join producers on products."producerId" = producers."id" WHERE products."categoryId"=4 ORDER BY RANDOM() LIMIT 10`,
       function (err, result) {
         done();
 
@@ -210,7 +210,7 @@ exports.product_laptophigh = (req, res) => {
     var id = req.params.id;
     client.query(
       `SELECT products.*,categories."id" as cateid,categories."categoryname",producers."id" as prodid,producers."producername",producers."address" 
-                  FROM products inner join categories on products."categoryId" = categories."id" inner join producers on products."producerId" = producers."id" WHERE products."categoryId">15 and products."categoryId"<26 ORDER BY RANDOM() LIMIT 10`,
+                  FROM products inner join categories on products."categoryId" = categories."id" inner join producers on products."producerId" = producers."id" WHERE products."categoryId"=5 ORDER BY RANDOM() LIMIT 10`,
       function (err, result) {
         done();
 
