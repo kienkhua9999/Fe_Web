@@ -20,4 +20,12 @@ module.exports = function(app) {
   //delete
   app.delete("/api/banner/deletebanner/:id",controller.deletebanner)
 
+
+   //view
+   app.get("/banner/list", controller.banner_list);
+   app.post("/banner/add_banner", controller.add_banner);
+   //update
+   app.post("/banner/update_banner/:id", controller.update_banner);
+   //delete
+   app.get("/banner/delete_banner/:id",controller.delete_banner);
 };
